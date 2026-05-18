@@ -1,0 +1,50 @@
+Step
+##############
+
+数式 :eq:`WeightGradient` 、 :eq:`ThetaGradient` 、 :eq:`lossForTeacher` で利用される活性化関数の微分値(代理勾配)のパラメータを設定するためのクラスです。
+
+このオブジェクトは、下記のクラスのパラメータとして利用します。
+
+* :doc:`../NeuralLayer/SAMLayer`
+
+クラス定義
+****************
+
+.. code:: python
+    
+    class Step(alpha=0, beta=6, gamma=18):
+
+import記述例
+****************
+.. code:: python
+
+    from samact import Step
+
+クラス要素
+****************
+
+Parameters
+====================
+
+    alpha : int, default=0
+        パラメータalphaの値を設定します。
+
+        .. note:: 0以上の整数が設定できます。
+
+        詳細は :ref:`stepAlpha` を参照してください。
+
+    beta : int, default=6
+        パラメータbetaの値を設定します。
+
+        .. note:: 0以上の整数が設定できます。
+
+        詳細は :ref:`stepBeta` を参照してください。
+
+    gamma : int, default=18
+        パラメータgammaの値を設定します。
+
+        .. note:: 0以上の整数が設定できます。
+
+        詳細は :ref:`stepGamma` を参照してください。
+
+    .. caution:: alpha==betaは設定できません。その場合、:doc:`Linear` を利用してください。

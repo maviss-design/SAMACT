@@ -1,0 +1,235 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAMACT Framework documentation &mdash; SAMACT Framework Apr2026 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=7dccd49e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=b1d04f61"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Requirement" href="QuickStartGuide/Requirement.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="#">
+            
+              <img src="_static/SAMACTFWLogo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Quick Start Guide:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="QuickStartGuide/Requirement.html">Requirement</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">What is SAMACT?:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="WhatIsSamact/MachineLearning.html">機械学習とは</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WhatIsSamact/SAMACTOverview.html">SAMACT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WhatIsSamact/SAMACTEquation.html">SAMACTの数式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WhatIsSamact/HyperParameter.html">HyperParameter</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="APIReference/Models/index.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="APIReference/Results/index.html">Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="APIReference/EncodeLayer/index.html">EncodeLayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="APIReference/DecodeLayer/index.html">DecodeLayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="APIReference/NeuralLayer/index.html">NeuralLayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="APIReference/ActivateFunction/index.html">ActivateFunction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="APIReference/SAMACTProperty/index.html">SAMACTProperty</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Revision History</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="RevisionHistory/index.html">RevisionHistory</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">SAMACT Framework</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">SAMACT Framework documentation</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="samact-framework-documentation">
+<h1>SAMACT Framework documentation<a class="headerlink" href="#samact-framework-documentation" title="Link to this heading"></a></h1>
+<section id="id1">
+<h2>表紙<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>この文書はSAMACTのフレームワークのドキュメントです。</p>
+</section>
+<section id="id2">
+<h2>概要<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<div class="line-block">
+<div class="line">SAMACTフレームワークは、下記に示すシステムのオレンジ色の枠線部分のAPIを提供します。</div>
+<div class="line">各層のユニット数など、ハイパーパラメータの調整が可能です。エッジAIシステムの検討にご利用ください。</div>
+<div class="line">SAMACTについては、下記をご参照ください。(当社Webサイト)</div>
+<div class="line"><a class="reference external" href="https://maviss-design.com/download/">https://maviss-design.com/download/</a></div>
+</div>
+<figure class="align-default" id="overview">
+<img alt="_images/overview_v2.png" src="_images/overview_v2.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">SAMACT フレームワーク 概要</span><a class="headerlink" href="#overview" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<div class="line-block">
+<div class="line">librosaは音声及び音楽の信号処理を行うためのオープンソースライブラリです。</div>
+<div class="line">Copyright(C) 2013-2023, librosa development team</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<div class="line-block">
+<div class="line">pandasはデータ解析や操作を行うためのオープンソースライブラリです。</div>
+<div class="line">Copyright (C) 2011-2012, Lambda Foundry, Inc. and PyData Development Team All rights reserved.</div>
+<div class="line">Copyright (C) 2008-2011 AQR Capital Management, LLC All rights reserved.</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">本フレームワークはPythonインタプリタ上で動作することを想定しています。</div>
+<div class="line">HW動作するSNNと同一の計算を動かしているため、実行にある程度の時間がかかります。</div>
+</div>
+<p>想定環境については、<a class="reference internal" href="QuickStartGuide/Requirement.html"><span class="doc">Requirement</span></a> を参照してください。</p>
+<p>ご質問やフィードバックがあれば、<a class="reference external" href="https://github.com/maviss-design/SAMACT/issues">https://github.com/maviss-design/SAMACT/issues</a> にお願いします。</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Quick Start Guide:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="QuickStartGuide/Requirement.html">Requirement</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">What is SAMACT?:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="WhatIsSamact/MachineLearning.html">機械学習とは</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WhatIsSamact/SAMACTOverview.html">SAMACT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WhatIsSamact/SAMACTEquation.html">SAMACTの数式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WhatIsSamact/HyperParameter.html">HyperParameter</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">API Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="APIReference/Models/index.html">Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="APIReference/Models/Sequential.html">Sequential</a></li>
+<li class="toctree-l2"><a class="reference internal" href="APIReference/Models/Pretrained.html">Pretrained</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="APIReference/Results/index.html">Results</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="APIReference/Results/FitResult.html">FitResult</a></li>
+<li class="toctree-l2"><a class="reference internal" href="APIReference/Results/EvaluationResult.html">EvaluationResult</a></li>
+<li class="toctree-l2"><a class="reference internal" href="APIReference/Results/Dynamics.html">Dynamics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="APIReference/Results/StaticParameters.html">StaticParameters</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="APIReference/EncodeLayer/index.html">EncodeLayer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="APIReference/EncodeLayer/RateEncodeLayer.html">RateEncodeLayer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="APIReference/EncodeLayer/NeuronFocusEncodeLayer.html">NeuronFocusEncodeLayer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="APIReference/DecodeLayer/index.html">DecodeLayer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="APIReference/DecodeLayer/MajorityDecodeLayer.html">MajorityDecodeLayer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="APIReference/DecodeLayer/NeuronFocusDecodeLayer.html">NeuronFocusDecodeLayer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="APIReference/DecodeLayer/AutoEncoderDecodeLayer.html">AutoEncoderDecodeLayer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="APIReference/NeuralLayer/index.html">NeuralLayer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="APIReference/NeuralLayer/SAMLayer.html">SAMLayer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="APIReference/ActivateFunction/index.html">ActivateFunction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="APIReference/ActivateFunction/Step.html">Step</a></li>
+<li class="toctree-l2"><a class="reference internal" href="APIReference/ActivateFunction/Linear.html">Linear</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="APIReference/SAMACTProperty/index.html">SAMACTProperty</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="APIReference/SAMACTProperty/LayerProperty.html">LayerProperty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="APIReference/SAMACTProperty/LearningProperty.html">LearningProperty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="APIReference/SAMACTProperty/RandomProperty.html">RandomProperty</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Revision History</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="RevisionHistory/index.html">RevisionHistory</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="QuickStartGuide/Requirement.html" class="btn btn-neutral float-right" title="Requirement" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Maviss Design Co. Ltd.
+      <span class="lastupdated">Last updated on 2026-04-22.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

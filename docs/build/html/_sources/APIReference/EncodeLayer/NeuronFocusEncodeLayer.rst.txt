@@ -1,0 +1,47 @@
+NeuronFocusEncodeLayer
+########################
+
+.. only:: internal
+
+    .. hint::
+        本クラスはAug2025より追加
+
+SAMACTのエンコーダを定義するためのクラスです。
+
+:doc:`RateEncodeLayer` は、1つの説明変数に1つのニューロンを割り当てていましたが、
+このエンコーダでは1つの説明変数に対して複数のニューロンを割り当てます。
+
+表現能力が向上し、誤差が小さくなることが期待できますが、計算量や回路面積は増大します。
+
+このオブジェクトは、下記のクラスのパラメータとして利用します。
+
+* :doc:`../Models/Sequential`
+
+クラス定義
+*******************
+
+.. code:: python
+
+    class NeuronFocusEncodeLayer(nUnits, nNeuronPerExpVar):
+
+import記述例
+*****************
+
+.. code:: python
+
+    from samact import NeuronFocusEncodeLayer
+
+クラス要素
+**************
+
+Parameters
+====================
+
+    nUnits: int:
+        モデルに入力する説明変数の数を指定します。
+
+        .. caution:: 生成されたモデルに、ここで指定した説明変数の数と互換がないデータを入力するとエラーになるのでご注意ください。
+
+    nNeuronPerExpVar: int:
+        | 1つの説明変数に対して割り振るニューロンの数を指定します。
+        | 入力層のニューロン数は、nUnits :math:`\times` nNeuronPerExpVar になります。 

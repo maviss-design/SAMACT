@@ -1,0 +1,10 @@
+####################
+ActivateFunction
+####################
+
+.. toctree::
+   :maxdepth: 1
+   :caption: API Reference ActivateFunction:
+
+   Step
+   Linear

@@ -1,0 +1,12 @@
+#################
+Results
+#################
+
+.. toctree::
+   :maxdepth: 1
+   :caption: API Reference Results:
+
+   FitResult
+   EvaluationResult
+   Dynamics
+   StaticParameters

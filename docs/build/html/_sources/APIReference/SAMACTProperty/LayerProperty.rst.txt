@@ -1,0 +1,37 @@
+LayerProperty
+##############
+
+SAMACTのLayerごとの設定値を設定するためのクラスです。
+
+このオブジェクトは、下記のクラスのパラメータとして利用します。
+
+* :doc:`../NeuralLayer/SAMLayer`
+
+クラス定義
+****************
+
+.. code:: python
+
+    class LayerProperty(a, p)
+
+import記述例
+*****************
+.. code:: python
+
+    from samact import LayerProperty
+
+クラス要素
+**************
+
+Parameters
+=======================
+
+    a : int
+        数式 :eq:`CurrentPotential` 、 :eq:`History` で利用される減衰係数aです。
+
+        :ref:`coefA` が値を決定する上での指標になります。
+
+    p : float
+        数式 :eq:`DecreseV` で利用される減衰定数pです。
+
+        :ref:`consP` が値を決定する上での指標になります。

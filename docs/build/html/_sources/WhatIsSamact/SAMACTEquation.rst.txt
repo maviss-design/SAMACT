@@ -1,0 +1,171 @@
+################
+SAMACTの数式
+################
+
+**************
+forward
+**************
+本項では、SAMACTの推論方向の数式を示します。
+
+離散時間tにおいて、i個のシナプスを持つニューロンjにおける内部電位は下記の数式で表されます。
+
+.. math:: U_j(t) = \Sigma_{i=1}^{n}W_{ji}X_i(t)+aV_j(t-1)
+    :label: CurrentPotential
+
+ただし、:math:`X_i(t)` はニューロンjへのi個の入力、:math:`W_{ji}` は結合荷重、aは :math:`(1-2^{-n})` で表される減衰定数、
+:math:`V_j(t-1)` は前の時刻の残存電位です。
+
+aは減算と右シフト演算により実現されています。
+
+この内部電位Uと、発火閾値 :math:`\theta` を比較し、内部電位が発火閾値を上回る場合に、ニューロンjは、該当時間にパルスを出力します。
+
+.. math:: X_j(t) = g(u)
+    :label: OutputPulse
+
+.. math:: u = U_j(t)-\theta
+    :label: UPotential
+
+SAMACTはSNNなので、活性化関数がStep関数で定められ、ニューロンの出力は2値になります。
+
+.. math::
+    :label: activate
+
+    g(u) = \begin{cases}
+      1 & (u \geq 0)\\
+      0 & (u < 0)
+    \end{cases}
+
+なお、パルスが出力された場合、次の時刻に残存する電位Vは、パラメータpに応じて減衰します。具体的には下記の数式で示されます。
+
+.. math:: V_j(t) = U_j(t) - pX_j(t)
+    :label: DecreseV
+
+ここまでの数式をネットワークとして接続することで、ニューラルネットワークを実現しています。
+
+**************
+backward
+**************
+本項では、SAMACTの学習方向の数式を示します。
+
+目的関数の定義は下記です。SAMACTは、この関数の評価結果を最小化することを目的として、勾配降下法を利用して学習します。
+
+※l層のネットワークという仮定
+
+.. math::
+    :label: ObjFunc
+
+    E \stackrel{\mathrm{def}}{=} \frac{1}{N}\Sigma_{P=1}^{N}\Sigma_{t=1}^{t_N}\frac{1}{2}\Sigma_{k=1}^{n_l}(X_{P,k}^{\langle l \rangle}(t) - T_{P,k}^{\langle l \rangle}(t))^2
+
+なお、下記のような意味づけになっています。
+
+* E: 目的関数
+* N: データのパターン数
+* :math:`t_N` : 1データに対してSAMACが推論に利用する時刻数
+* :math:`n_3` : 3層目のニューロン数
+* :math:`X(t)` : 時刻tの3層目のニューロンの出力パルス
+* :math:`T(t)` : 時刻tの3層目のニューロンの教師パルス
+
+SAMACTにおける学習対象は、下記2種です。項目は、更新式へのリンクになっています。
+
+* :ref:`重みW<UpdateWeight>`
+* :ref:`発火閾値θ<UpdateTheta>`
+
+
+.. _UpdateWeight:
+
+重みWの更新式
+=================
+
+m個のシナプスをn個のニューロンごとに持つl層目の重みWの更新式は下記で定義されます。
+
+.. math::
+    :label: WeightUpdate
+
+    W_{nm}^{\langle l \rangle}(t+1) \gets W_{nm}^{\langle l \rangle}(t) - \eta \frac{\partial E(t)}{\partial W_{nm}^{\langle l \rangle}(t)}
+
+ただし、:math:`\eta` は :math:`2^{-n}` で表され、右シフト演算によって実現されます。
+
+なお、勾配は下記の式で表されます。
+
+.. math::
+    :label: WeightGradient
+
+    \frac{\partial E(t)}{\partial W_{nm}^{\langle l \rangle}(t)} = (X_{n}^{\langle l \rangle}(t) - T_{n}^{\langle l \rangle}(t))g'(u_{n}^{\langle l \rangle}(t))H_{nm}^{\langle l \rangle}(t)
+
+最終層以外の教師パルスTは、:ref:`teacherGen` に示す数式で、次の層によって生成されます。
+
+:math:`u(t)` は数式 :eq:`UPotential` で表されます。
+
+また、勾配計算に利用する活性化関数の導関数 :math:`g'(u)` は、次のグラフで表されます。
+
+.. figure:: ../../img/gdash.png
+    :name: gradientActivate
+
+    活性化関数の導関数のグラフ
+
+ただし、 :math:`\alpha , \beta , \gamma` は :math:`2^{-n}` で表され、右シフト演算で実現されます。
+
+:math:`H(t)` は入力履歴値を表し、下記の数式で定義します。
+
+.. math::
+    :label: History
+
+    H_{nm}^{\langle l \rangle}(t) \stackrel{\mathrm{def}}{=} aH_{nm}^{\langle l \rangle}(t-1) + X_{m}^{{\langle l-1 \rangle}}(t)
+
+ただし、aは :math:`(1-2^{-n})` で表され、減算と右シフトにより実現されます。
+
+
+.. _UpdateTheta:
+
+発火閾値 :math:`\theta` の更新式
+======================================
+
+n個のニューロンごとの発火閾値 :math:`\theta` の更新式は下記で定義されます。
+
+.. math::
+    :label: ThetaUpdate
+
+    \theta _{n}^{\langle l \rangle}(t+1) \gets \theta _{n}^{\langle l \rangle}(t) - \iota \frac{\partial E(t)}{\partial \theta _{n}^{\langle l \rangle}(t)}
+
+ただし、:math:`\iota` は :math:`2^{-n}` で表され、右シフト演算によって実現されます。
+
+なお、勾配は下記の式で表されます。
+
+.. math::
+    :label: ThetaGradient
+
+    \frac{\partial E(t)}{\partial \theta _{n}^{\langle l \rangle}(t)} = -(X_{n}^{\langle l \rangle}(t) - T_{n}^{\langle l \rangle}(t))g'(u_{n}^{\langle l \rangle}(t))
+
+最終層以外の教師パルスTは、:ref:`teacherGen` に示す数式で、次の層によって生成されます。
+
+:math:`u(t)` は数式 :eq:`UPotential` で表されます。
+
+また、勾配計算に利用する活性化関数の導関数 :math:`g'(u)` は、:numref:`gradientActivate` で表されます。
+
+.. _teacherGen:
+
+前層への教師信号の定義
+======================
+
+.. math::
+    :label: teacherPulseGen
+
+    T_{j}^{\langle l-1 \rangle}(t) = \begin{cases}
+      1 & (X_{j}^{\langle l-1 \rangle} - \frac{\partial E(t)}{\partial X_{j}^{\langle l-1 \rangle}}(t) \geq Threshold) \\
+      0 & (X_{j}^{\langle l-1 \rangle} - \frac{\partial E(t)}{\partial X_{j}^{\langle l-1 \rangle}}(t) < Threshold))
+    \end{cases}
+
+ただし、損失は下記の式で表されます。l層目はk個のニューロンを持ち、l-1層目はj個のニューロンを持つ想定です。
+
+また、Thresholdは0.5です。
+
+.. math::
+    :label: lossForTeacher
+
+    \frac{\partial E(t)}{\partial X_{j}^{\langle l-1 \rangle}}(t) = \Sigma_{k=1}^{n_l}(X_{k}^{\langle l \rangle}(t) - T_{k}^{\langle l \rangle}(t))g'(u_{k}(t))W_{jk}^{\langle l \rangle}(t)
+
+:math:`u(t)` は数式 :eq:`UPotential` で表されます。
+
+教師信号生成に利用する活性化関数の導関数 :math:`g'(u)` は、:numref:`gradientActivate` で表されます。
+
+.. caution:: l層目の重みは、転置行列です。

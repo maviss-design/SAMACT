@@ -1,0 +1,245 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAMACTの数式 &mdash; SAMACT Framework Apr2026 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=7dccd49e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=b1d04f61"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="HyperParameter" href="HyperParameter.html" />
+    <link rel="prev" title="SAMACT" href="SAMACTOverview.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/SAMACTFWLogo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Quick Start Guide:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../QuickStartGuide/Requirement.html">Requirement</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">What is SAMACT?:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="MachineLearning.html">機械学習とは</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SAMACTOverview.html">SAMACT</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">SAMACTの数式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#forward">forward</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#backward">backward</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#w">重みWの更新式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#theta">発火閾値 <span class="math notranslate nohighlight">\(\theta\)</span> の更新式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#teachergen">前層への教師信号の定義</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="HyperParameter.html">HyperParameter</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../APIReference/Models/index.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../APIReference/Results/index.html">Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../APIReference/EncodeLayer/index.html">EncodeLayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../APIReference/DecodeLayer/index.html">DecodeLayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../APIReference/NeuralLayer/index.html">NeuralLayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../APIReference/ActivateFunction/index.html">ActivateFunction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../APIReference/SAMACTProperty/index.html">SAMACTProperty</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Revision History</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../RevisionHistory/index.html">RevisionHistory</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SAMACT Framework</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">SAMACTの数式</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="samact">
+<h1>SAMACTの数式<a class="headerlink" href="#samact" title="Link to this heading"></a></h1>
+<section id="forward">
+<h2>forward<a class="headerlink" href="#forward" title="Link to this heading"></a></h2>
+<p>本項では、SAMACTの推論方向の数式を示します。</p>
+<p>離散時間tにおいて、i個のシナプスを持つニューロンjにおける内部電位は下記の数式で表されます。</p>
+<div class="math notranslate nohighlight" id="equation-currentpotential">
+<span class="eqno">(1)<a class="headerlink" href="#equation-currentpotential" title="Link to this equation"></a></span>\[U_j(t) = \Sigma_{i=1}^{n}W_{ji}X_i(t)+aV_j(t-1)\]</div>
+<p>ただし、<span class="math notranslate nohighlight">\(X_i(t)\)</span> はニューロンjへのi個の入力、<span class="math notranslate nohighlight">\(W_{ji}\)</span> は結合荷重、aは <span class="math notranslate nohighlight">\((1-2^{-n})\)</span> で表される減衰定数、
+<span class="math notranslate nohighlight">\(V_j(t-1)\)</span> は前の時刻の残存電位です。</p>
+<p>aは減算と右シフト演算により実現されています。</p>
+<p>この内部電位Uと、発火閾値 <span class="math notranslate nohighlight">\(\theta\)</span> を比較し、内部電位が発火閾値を上回る場合に、ニューロンjは、該当時間にパルスを出力します。</p>
+<div class="math notranslate nohighlight" id="equation-outputpulse">
+<span class="eqno">(2)<a class="headerlink" href="#equation-outputpulse" title="Link to this equation"></a></span>\[X_j(t) = g(u)\]</div>
+<div class="math notranslate nohighlight" id="equation-upotential">
+<span class="eqno">(3)<a class="headerlink" href="#equation-upotential" title="Link to this equation"></a></span>\[u = U_j(t)-\theta\]</div>
+<p>SAMACTはSNNなので、活性化関数がStep関数で定められ、ニューロンの出力は2値になります。</p>
+<div class="math notranslate nohighlight" id="equation-activate">
+<span class="eqno">(4)<a class="headerlink" href="#equation-activate" title="Link to this equation"></a></span>\[\begin{split}g(u) = \begin{cases}
+  1 &amp; (u \geq 0)\\
+  0 &amp; (u &lt; 0)
+\end{cases}\end{split}\]</div>
+<p>なお、パルスが出力された場合、次の時刻に残存する電位Vは、パラメータpに応じて減衰します。具体的には下記の数式で示されます。</p>
+<div class="math notranslate nohighlight" id="equation-decresev">
+<span class="eqno">(5)<a class="headerlink" href="#equation-decresev" title="Link to this equation"></a></span>\[V_j(t) = U_j(t) - pX_j(t)\]</div>
+<p>ここまでの数式をネットワークとして接続することで、ニューラルネットワークを実現しています。</p>
+</section>
+<section id="backward">
+<h2>backward<a class="headerlink" href="#backward" title="Link to this heading"></a></h2>
+<p>本項では、SAMACTの学習方向の数式を示します。</p>
+<p>目的関数の定義は下記です。SAMACTは、この関数の評価結果を最小化することを目的として、勾配降下法を利用して学習します。</p>
+<p>※l層のネットワークという仮定</p>
+<div class="math notranslate nohighlight" id="equation-objfunc">
+<span class="eqno">(6)<a class="headerlink" href="#equation-objfunc" title="Link to this equation"></a></span>\[E \stackrel{\mathrm{def}}{=} \frac{1}{N}\Sigma_{P=1}^{N}\Sigma_{t=1}^{t_N}\frac{1}{2}\Sigma_{k=1}^{n_l}(X_{P,k}^{\langle l \rangle}(t) - T_{P,k}^{\langle l \rangle}(t))^2\]</div>
+<p>なお、下記のような意味づけになっています。</p>
+<ul class="simple">
+<li><p>E: 目的関数</p></li>
+<li><p>N: データのパターン数</p></li>
+<li><p><span class="math notranslate nohighlight">\(t_N\)</span> : 1データに対してSAMACが推論に利用する時刻数</p></li>
+<li><p><span class="math notranslate nohighlight">\(n_3\)</span> : 3層目のニューロン数</p></li>
+<li><p><span class="math notranslate nohighlight">\(X(t)\)</span> : 時刻tの3層目のニューロンの出力パルス</p></li>
+<li><p><span class="math notranslate nohighlight">\(T(t)\)</span> : 時刻tの3層目のニューロンの教師パルス</p></li>
+</ul>
+<p>SAMACTにおける学習対象は、下記2種です。項目は、更新式へのリンクになっています。</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#updateweight"><span class="std std-ref">重みW</span></a></p></li>
+<li><p><a class="reference internal" href="#updatetheta"><span class="std std-ref">発火閾値θ</span></a></p></li>
+</ul>
+<section id="w">
+<span id="updateweight"></span><h3>重みWの更新式<a class="headerlink" href="#w" title="Link to this heading"></a></h3>
+<p>m個のシナプスをn個のニューロンごとに持つl層目の重みWの更新式は下記で定義されます。</p>
+<div class="math notranslate nohighlight" id="equation-weightupdate">
+<span class="eqno">(7)<a class="headerlink" href="#equation-weightupdate" title="Link to this equation"></a></span>\[W_{nm}^{\langle l \rangle}(t+1) \gets W_{nm}^{\langle l \rangle}(t) - \eta \frac{\partial E(t)}{\partial W_{nm}^{\langle l \rangle}(t)}\]</div>
+<p>ただし、<span class="math notranslate nohighlight">\(\eta\)</span> は <span class="math notranslate nohighlight">\(2^{-n}\)</span> で表され、右シフト演算によって実現されます。</p>
+<p>なお、勾配は下記の式で表されます。</p>
+<div class="math notranslate nohighlight" id="equation-weightgradient">
+<span class="eqno">(8)<a class="headerlink" href="#equation-weightgradient" title="Link to this equation"></a></span>\[\frac{\partial E(t)}{\partial W_{nm}^{\langle l \rangle}(t)} = (X_{n}^{\langle l \rangle}(t) - T_{n}^{\langle l \rangle}(t))g'(u_{n}^{\langle l \rangle}(t))H_{nm}^{\langle l \rangle}(t)\]</div>
+<p>最終層以外の教師パルスTは、<a class="reference internal" href="#teachergen"><span class="std std-ref">前層への教師信号の定義</span></a> に示す数式で、次の層によって生成されます。</p>
+<p><span class="math notranslate nohighlight">\(u(t)\)</span> は数式 <a class="reference internal" href="#equation-upotential">(3)</a> で表されます。</p>
+<p>また、勾配計算に利用する活性化関数の導関数 <span class="math notranslate nohighlight">\(g'(u)\)</span> は、次のグラフで表されます。</p>
+<figure class="align-default" id="gradientactivate">
+<img alt="../_images/gdash.png" src="../_images/gdash.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">活性化関数の導関数のグラフ</span><a class="headerlink" href="#gradientactivate" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>ただし、 <span class="math notranslate nohighlight">\(\alpha , \beta , \gamma\)</span> は <span class="math notranslate nohighlight">\(2^{-n}\)</span> で表され、右シフト演算で実現されます。</p>
+<p><span class="math notranslate nohighlight">\(H(t)\)</span> は入力履歴値を表し、下記の数式で定義します。</p>
+<div class="math notranslate nohighlight" id="equation-history">
+<span class="eqno">(9)<a class="headerlink" href="#equation-history" title="Link to this equation"></a></span>\[H_{nm}^{\langle l \rangle}(t) \stackrel{\mathrm{def}}{=} aH_{nm}^{\langle l \rangle}(t-1) + X_{m}^{{\langle l-1 \rangle}}(t)\]</div>
+<p>ただし、aは <span class="math notranslate nohighlight">\((1-2^{-n})\)</span> で表され、減算と右シフトにより実現されます。</p>
+</section>
+<section id="theta">
+<span id="updatetheta"></span><h3>発火閾値 <span class="math notranslate nohighlight">\(\theta\)</span> の更新式<a class="headerlink" href="#theta" title="Link to this heading"></a></h3>
+<p>n個のニューロンごとの発火閾値 <span class="math notranslate nohighlight">\(\theta\)</span> の更新式は下記で定義されます。</p>
+<div class="math notranslate nohighlight" id="equation-thetaupdate">
+<span class="eqno">(10)<a class="headerlink" href="#equation-thetaupdate" title="Link to this equation"></a></span>\[\theta _{n}^{\langle l \rangle}(t+1) \gets \theta _{n}^{\langle l \rangle}(t) - \iota \frac{\partial E(t)}{\partial \theta _{n}^{\langle l \rangle}(t)}\]</div>
+<p>ただし、<span class="math notranslate nohighlight">\(\iota\)</span> は <span class="math notranslate nohighlight">\(2^{-n}\)</span> で表され、右シフト演算によって実現されます。</p>
+<p>なお、勾配は下記の式で表されます。</p>
+<div class="math notranslate nohighlight" id="equation-thetagradient">
+<span class="eqno">(11)<a class="headerlink" href="#equation-thetagradient" title="Link to this equation"></a></span>\[\frac{\partial E(t)}{\partial \theta _{n}^{\langle l \rangle}(t)} = -(X_{n}^{\langle l \rangle}(t) - T_{n}^{\langle l \rangle}(t))g'(u_{n}^{\langle l \rangle}(t))\]</div>
+<p>最終層以外の教師パルスTは、<a class="reference internal" href="#teachergen"><span class="std std-ref">前層への教師信号の定義</span></a> に示す数式で、次の層によって生成されます。</p>
+<p><span class="math notranslate nohighlight">\(u(t)\)</span> は数式 <a class="reference internal" href="#equation-upotential">(3)</a> で表されます。</p>
+<p>また、勾配計算に利用する活性化関数の導関数 <span class="math notranslate nohighlight">\(g'(u)\)</span> は、<a class="reference internal" href="#gradientactivate"><span class="std std-numref">Fig. 2</span></a> で表されます。</p>
+</section>
+<section id="teachergen">
+<span id="id1"></span><h3>前層への教師信号の定義<a class="headerlink" href="#teachergen" title="Link to this heading"></a></h3>
+<div class="math notranslate nohighlight" id="equation-teacherpulsegen">
+<span class="eqno">(12)<a class="headerlink" href="#equation-teacherpulsegen" title="Link to this equation"></a></span>\[\begin{split}T_{j}^{\langle l-1 \rangle}(t) = \begin{cases}
+  1 &amp; (X_{j}^{\langle l-1 \rangle} - \frac{\partial E(t)}{\partial X_{j}^{\langle l-1 \rangle}}(t) \geq Threshold) \\
+  0 &amp; (X_{j}^{\langle l-1 \rangle} - \frac{\partial E(t)}{\partial X_{j}^{\langle l-1 \rangle}}(t) &lt; Threshold))
+\end{cases}\end{split}\]</div>
+<p>ただし、損失は下記の式で表されます。l層目はk個のニューロンを持ち、l-1層目はj個のニューロンを持つ想定です。</p>
+<p>また、Thresholdは0.5です。</p>
+<div class="math notranslate nohighlight" id="equation-lossforteacher">
+<span class="eqno">(13)<a class="headerlink" href="#equation-lossforteacher" title="Link to this equation"></a></span>\[\frac{\partial E(t)}{\partial X_{j}^{\langle l-1 \rangle}}(t) = \Sigma_{k=1}^{n_l}(X_{k}^{\langle l \rangle}(t) - T_{k}^{\langle l \rangle}(t))g'(u_{k}(t))W_{jk}^{\langle l \rangle}(t)\]</div>
+<p><span class="math notranslate nohighlight">\(u(t)\)</span> は数式 <a class="reference internal" href="#equation-upotential">(3)</a> で表されます。</p>
+<p>教師信号生成に利用する活性化関数の導関数 <span class="math notranslate nohighlight">\(g'(u)\)</span> は、<a class="reference internal" href="#gradientactivate"><span class="std std-numref">Fig. 2</span></a> で表されます。</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>l層目の重みは、転置行列です。</p>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="SAMACTOverview.html" class="btn btn-neutral float-left" title="SAMACT" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="HyperParameter.html" class="btn btn-neutral float-right" title="HyperParameter" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Maviss Design Co. Ltd.
+      <span class="lastupdated">Last updated on 2026-04-17.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

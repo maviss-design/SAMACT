@@ -1,0 +1,52 @@
+LearningProperty
+##############################
+
+SAMACTの学習の設定を行うためのクラスです。
+
+このオブジェクトは、下記のクラスのFit()メソッドのパラメータとして利用します。
+
+* :doc:`../Models/Sequential`
+* :doc:`../Models/Pretrained`
+
+クラス定義
+****************
+
+.. code:: python
+
+    class LearningProperty(eta=7, iota=4, decayPeriod=5)
+
+import記述例
+*****************
+.. code:: python
+
+    from samact import LearningProperty
+
+クラス要素
+**************
+
+Parameters
+=======================
+
+    eta : int, default=7
+        数式 :eq:`WeightUpdate` で利用される重みの学習率etaの初期値です。
+
+        上記で言及している通り、etaは :math:`2^{-n}` で表され、右シフト演算によって実現されます。
+        この設定値では、この数式のnを設定します。
+
+        設定値の目安の参考として、 :ref:`eta` を参照してください。
+
+
+    iota : int, default=4
+        数式 :eq:`ThetaUpdate` で利用される発火閾値の学習率iotaの初期値です。
+
+        上記で言及している通り、iotaは :math:`2^{-n}` で表され、右シフト演算によって実現されます。
+        この設定値では、この数式のnを設定します。
+
+        設定値の目安の参考として、 :ref:`iota` を参照してください。
+
+    decayPeriod : int, default=5
+        eta、iotaの減衰周期を設定します。0に設定すると減衰しません。
+
+        decayPeriod epoch学習されると、上記の学習率が、1加算されます。(半減)
+
+        設定値の目安の参考として、 :ref:`decayPeriod` を参照してください。

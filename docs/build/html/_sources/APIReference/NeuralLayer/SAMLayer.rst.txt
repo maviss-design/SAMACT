@@ -1,0 +1,93 @@
+SAMLayer
+##############
+
+SAMACTのLayerを設定するためのクラスです。
+
+このオブジェクトは、下記のクラスのパラメータとして利用します。
+
+* :doc:`../Models/Sequential`
+
+クラス定義
+****************
+
+.. code:: python
+
+    class SAMLayer(nUnits, samProperty, gradientActivate, teacherSignalActivate,
+                   initW=None, initTheta=None, weightDist=None, thetaDist=None, seed=0)
+
+import記述例
+*****************
+.. code:: python
+
+    from samact import SAMLayer
+
+クラス要素
+**************
+
+Parameters
+=======================
+
+    nUnits : int
+        Layerのニューロンのユニット数を設定します。
+
+        .. caution:: 分類問題における最終層では、ユニット数は分類数と一致することを想定しています。
+
+    samProperty : :doc:`../SAMACTProperty/LayerProperty`
+        Layerごとに設定するハイパーパラメータを設定します。
+
+        ここで設定するパラメータは、 :doc:`../SAMACTProperty/LayerProperty` を参照してください。
+
+    gradientActivate : :doc:`../ActivateFunction/Step`
+        数式 :eq:`WeightGradient` 、 :eq:`ThetaGradient` で利用される活性化関数の導関数を設定します。
+
+        本バージョンで利用可能な、活性化関数(導関数)は下記です。
+
+        * :doc:`../ActivateFunction/Step` 
+        * :doc:`../ActivateFunction/Linear`
+
+        .. caution:: SAMACTの順伝搬方向の活性化関数はStep関数で固定されています。ここで設定できるのは、逆伝搬時に利用する活性化関数の導関数(代理勾配)です。
+
+    teacherSignalActivate : :doc:`../ActivateFunction/Step`
+        数式 :eq:`lossForTeacher` で利用される活性化関数の導関数を設定します。
+
+        本バージョンで利用可能な、活性化関数(導関数)は下記です。
+
+        * :doc:`../ActivateFunction/Step` 
+        * :doc:`../ActivateFunction/Linear`
+
+        .. caution:: SAMACTの順伝搬方向の活性化関数はStep関数で固定されています。ここで設定できるのは、逆伝搬時に利用する活性化関数の導関数(代理勾配)です。
+
+    initW : np.ndarray, default=None
+        重みの初期値を設定します。
+
+        新しく学習を行う場合は、基本的にNone(default)を指定してください。
+
+        本フレームワークが想定していない分布の初期値を設定したい場合に利用します。
+
+    initTheta : np.ndarray, default=None
+        発火閾値の初期値を設定します。
+
+        新しく学習を行う場合は、基本的にNone(default)を指定してください。
+
+        本フレームワークが想定していない分布の初期値を設定したい場合に利用します。
+
+    weightDist : RandomProperty, default=None
+        重みの初期値の乱数分布を決めるためのパラメータです。
+
+        :doc:`../SAMACTProperty/RandomProperty` を設定します。
+
+        .. only:: internal
+
+            .. hint:: 本機能はJan2026から追加。
+
+    thetaDist : RandomProperty, default=None
+        閾値の初期値の乱数分布を決めるためのパラメータです。
+
+        :doc:`../SAMACTProperty/RandomProperty` を設定します。
+
+        .. only:: internal
+
+            .. hint:: 本機能はJan2026から追加。
+
+    seed : int, default=0
+        重みや発火閾値の初期値を決めるための乱数のシードです。

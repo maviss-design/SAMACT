@@ -1,0 +1,34 @@
+Linear
+##############
+
+数式 :eq:`WeightGradient` 、 :eq:`ThetaGradient` 、 :eq:`lossForTeacher` で利用される活性化関数の微分値(代理勾配)のパラメータを設定するためのクラスです。
+
+.. caution:: 数式 :eq:`lossForTeacher` に対する、本クラスの指定は特許7792178にて保護されています。製品利用時はライセンス費用が発生します。
+
+このオブジェクトは、下記のクラスのパラメータとして利用します。
+
+* :doc:`../NeuralLayer/SAMLayer`
+
+クラス定義
+****************
+
+.. code:: python
+    
+    class Linear(nSlopeLeftShifts):
+
+import記述例
+****************
+.. code:: python
+
+    from samact import Linear
+
+クラス要素
+****************
+
+Parameters
+====================
+
+    nSlopeLeftShifts : int, default=0
+        | 代理勾配の左シフト演算のシフト数を決定します。
+        | 0を指定したとき、代理勾配は恒等関数となります。
+        | 負数を指定したとき、右シフトとなります。

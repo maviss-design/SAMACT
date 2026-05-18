@@ -1,0 +1,33 @@
+RateEncodeLayer
+########################
+
+SAMACTのエンコーダを定義するためのクラスです。
+
+このオブジェクトは、下記のクラスのパラメータとして利用します。
+
+* :doc:`../Models/Sequential`
+
+クラス定義
+*******************
+
+.. code:: python
+
+    class RateEncodeLayer(nUnits):
+
+import記述例
+*****************
+
+.. code:: python
+
+    from samact import RateEncodeLayer
+
+クラス要素
+**************
+
+Parameters
+====================
+
+    nUnits: int:
+        モデルに入力する説明変数の数を指定します。
+
+        .. caution:: 生成されたモデルに、ここで指定した説明変数の数と互換がないデータを入力するとエラーになるのでご注意ください。

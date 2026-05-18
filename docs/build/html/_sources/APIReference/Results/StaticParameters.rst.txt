@@ -1,0 +1,49 @@
+StaticParameters
+##################
+.. only:: internal
+
+    .. hint::
+        本クラスはAug2025より追加
+
+| モデルの静的パラメータを格納するためのクラスです。
+| ``scripts/Visualize/StaticParameterVisualizer.py`` に可視化例を記述しています。
+| ※上記の例の利用のためには、matplotlib の追加インストールが必要です。
+
+| 下記のクラスのGetStaticParameters()メソッドの返り値として利用されます。
+| ※上記メソッドは、StaticParametersのリストを返します。
+
+* :doc:`../Models/Sequential`
+
+クラス定義
+*****************
+
+ユーザはインスタンスしない想定なので省略します。
+
+import記述例
+*****************
+
+.. code:: python
+
+    from samact import StaticParameters
+
+※アノテーションに利用する可能性を考慮して記載しました。
+
+クラス要素
+*****************
+
+Parameters
+========================
+
+ユーザはインスタンスしない想定なので省略します。
+
+Attributes
+=====================
+
+    name : str
+        該当レイヤーの名称です。
+
+    weight : np.ndarray
+        (neuron, synapse)の次元で、各ニューロンの結合荷重が格納されます。
+
+    theta : np.ndarray
+        (neuron, )の次元で、各ニューロンの発火閾値が格納されます。

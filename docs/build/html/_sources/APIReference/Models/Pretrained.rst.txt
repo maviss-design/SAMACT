@@ -1,0 +1,297 @@
+Pretrained
+####################
+
+| 事前学習したモデルを読み込んで作成するSAMACTモデルのクラスです。
+| SAMACTを操作するために利用します。
+
+.. only:: internal
+
+    .. hint:: 本クラスはJan2026から追加 
+
+クラス定義
+**************
+
+.. code:: python
+    
+    class Pretrained(filename):
+
+import記述例
+**************
+
+.. code:: python
+
+    from samact import Pretrained
+
+クラス要素
+**************
+
+.. contents:: クラス要素一覧
+   :depth: 1
+   :local:
+   :backlinks: entry
+
+Parameters
+=======================
+
+    filename:str
+        本フレームワークの :doc:`Sequential` または、Pretrained(本クラス)の.Save()メソッドで作成したファイルを指定します。
+        
+        .. warning:: 本フレームワーク以外で生成したモデルファイルは、読み込むことができません。
+
+Fit(dataset, labels, epochs, learningProperty, metrics='accuracy') -> FitResult
+=======================================================================================================
+
+datasetを説明変数、labelsを目的変数として、SAMACTを学習します。
+
+Parameters
+-----------------
+
+    dataset : np.ndarray
+        説明変数を指定します。
+
+        下記の次元になっていることを想定しています。
+
+        .. code:: python
+
+            (データ数, 説明変数の数)
+
+        説明変数は、0から1の範囲に変換して渡してください。
+
+        .. tip:: 0から1の範囲に正規化するのが最もスタンダードですが、0.1から0.9の範囲に正規化する、という選択肢も考えられます。
+
+        .. tip:: 正規化には、scikit-learnの `MinMaxScaler <https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MinMaxScaler.html>`__ などを利用すると良いでしょう。
+
+    labels : np.ndarray
+        目的変数を指定します。
+
+        下記の次元になっていることを想定しています。
+
+        .. code:: python
+
+            (データ数, 目的変数の数)
+
+        * 分類問題の場合、目的変数はラベルの通し番号をint型として定義してください。(次元は1)
+        * オートエンコーダの場合、Noneを指定してください。
+
+    epochs : int
+        学習epoch数を設定します。
+
+    learningProperty : :doc:`../SAMACTProperty/LearningProperty`
+        学習のための設定値を設定します。
+
+    metrics : str, default='accuracy'
+        学習の評価メトリクスを設定します。
+
+        分類問題を利用する場合、'accuracy'を指定してください。(デフォルト)
+
+        回帰予測やオートエンコーダを利用する場合、'mse'を指定してください。
+
+        その他の指標については、学習データでEvaluate()し、EvaluationResult.predictsを利用してユーザが計算することを想定しています。
+
+
+Returns
+----------------
+
+    :doc:`../Results/FitResult`
+
+    学習結果のサマリを返します。
+
+""""""
+
+Evaluate(dataset, label, metrics='accuracy') -> EvaluationResult
+======================================================================================
+
+datasetを説明変数、labelを目的変数として、SAMACTを評価します。
+
+Parameters
+-----------
+    dataset : np.ndarray
+        説明変数を指定します。
+
+        下記の次元になっていることを想定しています。
+
+        .. code:: python
+
+            (データ数, 説明変数の数)
+
+        説明変数は、0から1の範囲に変換して渡してください。
+
+        .. tip:: 0から1の範囲に正規化するのが最もスタンダードですが、0.1から0.9の範囲に正規化する、という選択肢も考えられます。
+
+        .. tip:: 正規化には、scikit-learnの `MinMaxScaler <https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MinMaxScaler.html>`__ などを利用すると良いでしょう。
+
+
+    label : np.ndarray
+        目的変数を指定します。
+
+        下記の次元になっていることを想定しています。
+
+        .. code:: python
+
+            (データ数, 目的変数の数)
+
+        * 分類問題の場合、目的変数はラベルの通し番号をint型として定義してください。
+        * オートエンコーダの場合、Noneを指定してください。
+
+
+    metrics : str, default='accuracy'
+        分類問題を利用する場合、'accuracy'を指定してください。(デフォルト)
+
+        回帰予測やオートエンコーダを利用する場合、'mse'を指定してください。
+
+
+Returns
+----------------
+    :doc:`../Results/EvaluationResult`
+
+""""""
+
+Predict(data) -> int|float|np.ndarray
+==============================================
+1データに対して、SAMACTで推論します。
+
+Parameters
+-----------------
+
+    data : np.ndarray
+        下記の次元になっていることを想定しています。
+
+        .. code:: python
+
+            (説明変数の数, )
+
+
+Returns
+----------------
+
+    * 分類問題の場合、ラベルの通し番号を返します。(int)
+    * オートエンコーダの場合、再構成誤差を返します。(float)
+    * 回帰予測の場合、目的変数群を返します。(np.ndarray)
+
+""""""
+
+PulseCountPredict(data) -> np.ndarray
+=========================================
+
+1データに対して、SAMACTで推論します。
+
+ただし、返り値を各出力ニューロンのパルス数として受け取ります。
+
+Parameters
+-----------------
+
+    data : np.ndarray
+        下記の次元になっていることを想定しています。
+
+        .. code:: python
+
+            (説明変数の数, )
+
+Returns
+    np.ndarray
+
+    次元は下記になります。
+
+    .. code:: python
+
+        (出力ニューロンのパルス数, )
+
+    .. caution:: 出力されるのはパルス数で、返り値をそのままSoftmaxとして解釈することはできないのでご注意ください。
+
+""""""
+
+Save(filename)->None
+============================
+現時点のモデルの情報をh5形式のファイルに出力します。
+
+本フレームワークのPretrained(本クラス)のコンストラクタ引数にすることで、ファイルからモデルを読み込むことができます。
+
+Parameters
+-----------------
+    filename : str
+        保存するファイルの名称を指定します。(拡張子は.h5を推奨)
+
+
+Returns
+------------------
+
+    None
+
+""""""
+
+FreezeLayers(layers)->None
+==========================================
+
+layersで名前指定したレイヤーの学習可能パラメータをフリーズします。
+
+転移学習などの文脈での利用を想定しています
+
+.. caution::
+    本バージョンではフリーズの解除はできません。
+
+Parameters
+-----------------
+    layers : list[str]
+        フリーズするレイヤーの名前のリストを渡します。
+
+        .. tip::
+            layerの名称は、次の命名規則になります。f'SAMLayer{i}'
+
+
+Returns
+------------------
+
+    None
+
+""""""
+
+layers -> list[str]:
+===============================
+
+モデルが持つ学習可能レイヤーの名前の一覧をリストで取得できるプロパティです。
+
+""""""
+
+GetStaticParameters()->list[StaticParameters]
+=====================================================
+
+モデルの学習可能パラメータを取得します。
+
+Parameters
+-----------------
+
+    None
+
+
+Returns
+---------------
+
+    list[StaticParameters]
+
+    StaticParametersの仕様については、:doc:`../Results/StaticParameters` を参照してください。
+
+""""""
+
+ComputeDynamics(data)->list[Dynamics]
+==============================================
+
+| パラメータで渡したデータ(1レコード)に対しての
+| モデルの動的パラメータ(内部電位や発火時刻)を取得します。
+
+Parameters
+-----------------
+
+    data : np.ndarray
+        下記の次元になっていることを想定しています。
+
+        .. code:: python
+
+            (説明変数の数, )
+
+
+Returns
+---------------
+
+    list[Dynamics]
+
+    Dynamicsの仕様については、:doc:`../Results/Dynamics` を参照してください。

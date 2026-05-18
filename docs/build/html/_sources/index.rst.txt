@@ -1,0 +1,95 @@
+.. SAMACT Framework documentation master file, created by
+   sphinx-quickstart on Wed Mar  5 17:01:57 2025.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+SAMACT Framework documentation
+==============================
+
+表紙
+-------
+
+この文書はSAMACTのフレームワークのドキュメントです。
+
+.. only:: internal
+
+   ========== ==============================
+   発行日      2026/4/30
+   文書番号    MT-TEA-25025-05
+   会社・所属  メイビスデザイン株式会社 R&D
+   配布先      SAMACTフレームワーク利用者 各位
+   ========== ==============================
+
+.. only:: internal
+
+   ====== ==================== ======
+   承認    査閲                 作成
+   目野    内田、早稲田、沖井    西原 
+   ====== ==================== ======
+
+概要
+------
+
+| SAMACTフレームワークは、下記に示すシステムのオレンジ色の枠線部分のAPIを提供します。
+| 各層のユニット数など、ハイパーパラメータの調整が可能です。エッジAIシステムの検討にご利用ください。
+| SAMACTについては、下記をご参照ください。(当社Webサイト)
+| https://maviss-design.com/download/
+
+.. figure:: ../img/overview_v2.png
+    :name: overview
+
+    SAMACT フレームワーク 概要
+
+.. tip::
+   
+    | librosaは音声及び音楽の信号処理を行うためのオープンソースライブラリです。
+    | Copyright(C) 2013-2023, librosa development team
+
+.. tip::
+
+   | pandasはデータ解析や操作を行うためのオープンソースライブラリです。
+   | Copyright (C) 2011-2012, Lambda Foundry, Inc. and PyData Development Team All rights reserved.
+   | Copyright (C) 2008-2011 AQR Capital Management, LLC All rights reserved.
+
+| 本フレームワークはPythonインタプリタ上で動作することを想定しています。
+| HW動作するSNNと同一の計算を動かしているため、実行にある程度の時間がかかります。
+
+想定環境については、:doc:`./QuickStartGuide/Requirement` を参照してください。
+
+.. only:: not internal
+
+   ご質問やフィードバックがあれば、https://github.com/maviss-design/SAMACT/issues にお願いします。
+
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Quick Start Guide:
+
+   QuickStartGuide/Requirement
+
+.. toctree::
+   :maxdepth: 1
+   :caption: What is SAMACT?:
+
+   WhatIsSamact/MachineLearning
+   WhatIsSamact/SAMACTOverview
+   WhatIsSamact/SAMACTEquation
+   WhatIsSamact/HyperParameter
+
+.. toctree::
+   :maxdepth: 2
+   :caption: API Reference:
+
+   APIReference/Models/index
+   APIReference/Results/index
+   APIReference/EncodeLayer/index
+   APIReference/DecodeLayer/index
+   APIReference/NeuralLayer/index
+   APIReference/ActivateFunction/index
+   APIReference/SAMACTProperty/index
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Revision History
+
+   RevisionHistory/index

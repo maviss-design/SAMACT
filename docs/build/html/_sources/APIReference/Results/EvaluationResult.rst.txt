@@ -1,0 +1,48 @@
+EvaluationResult
+##################
+
+モデルのEvaluate結果を格納するためのクラスです。
+
+下記のクラスのEvaluate()メソッドの返り値として利用されます。
+
+* :doc:`../Models/Sequential`
+
+クラス定義
+*****************
+
+ユーザはインスタンスしない想定なので省略します。
+
+import記述例
+*****************
+
+.. code:: python
+
+    from samact import EvaluationResult
+
+※アノテーションに利用する可能性を考慮して記載しました。
+
+クラス要素
+*****************
+
+Parameters
+========================
+
+ユーザはインスタンスしない想定なので省略します。
+
+Attributes
+=====================
+
+    predicts : list[int|float|np.ndarray]
+        :doc:`../Models/Sequential` のEvaluate()に渡したデータの推論結果のリストです。
+
+        設定したデコーダによってリストの要素の型が変化します。
+
+        * :doc:`../DecodeLayer/MajorityDecodeLayer` : ラベル番号(int)
+        * :doc:`../DecodeLayer/AutoEncoderDecodeLayer` : 再構成誤差(float)
+        * :doc:`../DecodeLayer/NeuronFocusDecodeLayer` : 目的変数群(np.ndarray)
+
+    metrics : float
+        評価指標です。
+        :doc:`../Models/Sequential` のEvaluate()のパラメータmetricsで指定した形式で返します。
+
+        デフォルトの場合、正解率(accuracy)を返します。

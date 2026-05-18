@@ -1,0 +1,14 @@
+Jan2026
+##################
+
+============================================================ ===============================================================
+内容                                                            ページリンク
+============================================================ ===============================================================
+pythonモジュール h5pyへの依存を追加                                 :doc:`../QuickStartGuide/Requirement`
+Evaluateメソッドのmetricsパラメータの記述を適正化                    :doc:`../APIReference/Models/Sequential`
+Saveメソッドの仕様を変更(npz出力から、h5ファイル出力に)               :doc:`../APIReference/Models/Sequential`
+Pretrainedクラスを追加(h5ファイルで初期化できるmodel)                :doc:`../APIReference/Models/Pretrained`
+RandomPropertyクラスを追加(パラメータの初期値関連)                   :doc:`../APIReference/SAMACTProperty/RandomProperty`
+重みと初期値の分布を指定する機能を追加                               :doc:`../APIReference/NeuralLayer/SAMLayer`
+gradientStrategyとbatchStrategyを削除                             :doc:`../APIReference/NeuralLayer/SAMLayer`
+============================================================ ===============================================================

@@ -1,0 +1,18 @@
+Aug2025
+##################
+
+============================================================ ===============================================================
+内容                                                            ページリンク
+============================================================ ===============================================================
+フレームワークの概説図を最新版に更新                             :doc:`../index`
+入力層の数の説明をエンコーダの種類に依存しないように修正           :doc:`../WhatIsSamact/HyperParameter`
+レイヤーのフリーズ機能を追加(FreezeLayers)                       :doc:`../APIReference/Models/Sequential`
+モデルの静的パラメータの取得機能の追加(GetStaticParameters)       :doc:`../APIReference/Models/Sequential`
+静的パラメータの格納クラスの追加(StaticParameters)               :doc:`../APIReference/Results/StaticParameters`
+モデルの動的パラメータの取得機能の追加(ComputeDynamics)           :doc:`../APIReference/Models/Sequential`
+動的パラメータの格納クラスの追加(Dynamics)                       :doc:`../APIReference/Results/Dynamics`
+モデルのレイヤー名の一覧の取得機能の追加(layers)                  :doc:`../APIReference/Models/Sequential`
+NeuronFocusEncodeLayerの追加                                   :doc:`../APIReference/EncodeLayer/NeuronFocusEncodeLayer`
+NeuronFocusDecodeLayerの追加                                   :doc:`../APIReference/DecodeLayer/NeuronFocusDecodeLayer`
+AutoEncoderDecodeLayerの追加                                   :doc:`../APIReference/DecodeLayer/AutoEncoderDecodeLayer`
+============================================================ ===============================================================

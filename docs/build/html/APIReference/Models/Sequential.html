@@ -1,0 +1,514 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sequential &mdash; SAMACT Framework Apr2026 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=7dccd49e" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=b1d04f61"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Pretrained" href="Pretrained.html" />
+    <link rel="prev" title="Models" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/SAMACTFWLogo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Quick Start Guide:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../QuickStartGuide/Requirement.html">Requirement</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">What is SAMACT?:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../WhatIsSamact/MachineLearning.html">機械学習とは</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../WhatIsSamact/SAMACTOverview.html">SAMACT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../WhatIsSamact/SAMACTEquation.html">SAMACTの数式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../WhatIsSamact/HyperParameter.html">HyperParameter</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Models</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Sequential</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">クラス定義</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#import">import記述例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">クラス要素</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#add-layer-none">Add(layer) -&gt; None</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#compile-tc-none">Compile(tC) -&gt; None</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fit-dataset-labels-epochs-learningproperty-metrics-accuracy-fitresult">Fit(dataset, labels, epochs, learningProperty, metrics=’accuracy’) -&gt; FitResult</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#evaluate-dataset-label-metrics-accuracy-evaluationresult">Evaluate(dataset, label, metrics=’accuracy’) -&gt; EvaluationResult</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#predict-data-int-float-np-ndarray">Predict(data) -&gt; int|float|np.ndarray</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pulsecountpredict-data-np-ndarray">PulseCountPredict(data) -&gt; np.ndarray</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#save-filename-none">Save(filename)-&gt;None</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freezelayers-layers-none">FreezeLayers(layers)-&gt;None</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#layers-list-str">layers -&gt; list[str]:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#getstaticparameters-list-staticparameters">GetStaticParameters()-&gt;list[StaticParameters]</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#computedynamics-data-list-dynamics">ComputeDynamics(data)-&gt;list[Dynamics]</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Pretrained.html">Pretrained</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Results/index.html">Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../EncodeLayer/index.html">EncodeLayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DecodeLayer/index.html">DecodeLayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../NeuralLayer/index.html">NeuralLayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ActivateFunction/index.html">ActivateFunction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SAMACTProperty/index.html">SAMACTProperty</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Revision History</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../RevisionHistory/index.html">RevisionHistory</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">SAMACT Framework</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Models</a></li>
+      <li class="breadcrumb-item active">Sequential</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sequential">
+<h1>Sequential<a class="headerlink" href="#sequential" title="Link to this heading"></a></h1>
+<div class="line-block">
+<div class="line">SequentialなSAMACTモデルのクラスです。</div>
+<div class="line">SAMACTを操作するために利用します。</div>
+</div>
+<section id="id1">
+<h2>クラス定義<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Sequential</span><span class="p">(</span><span class="n">encoder</span><span class="p">,</span> <span class="n">decoder</span><span class="p">,</span> <span class="n">layers</span><span class="p">):</span>
+</pre></div>
+</div>
+</section>
+<section id="import">
+<h2>import記述例<a class="headerlink" href="#import" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">samact</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sequential</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2>クラス要素<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<nav class="contents local" id="id3">
+<p class="topic-title">クラス要素一覧</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#parameters" id="id22">Parameters</a></p></li>
+<li><p><a class="reference internal" href="#add-layer-none" id="id23">Add(layer) -&gt; None</a></p></li>
+<li><p><a class="reference internal" href="#compile-tc-none" id="id24">Compile(tC) -&gt; None</a></p></li>
+<li><p><a class="reference internal" href="#fit-dataset-labels-epochs-learningproperty-metrics-accuracy-fitresult" id="id25">Fit(dataset, labels, epochs, learningProperty, metrics=’accuracy’) -&gt; FitResult</a></p></li>
+<li><p><a class="reference internal" href="#evaluate-dataset-label-metrics-accuracy-evaluationresult" id="id26">Evaluate(dataset, label, metrics=’accuracy’) -&gt; EvaluationResult</a></p></li>
+<li><p><a class="reference internal" href="#predict-data-int-float-np-ndarray" id="id27">Predict(data) -&gt; int|float|np.ndarray</a></p></li>
+<li><p><a class="reference internal" href="#pulsecountpredict-data-np-ndarray" id="id28">PulseCountPredict(data) -&gt; np.ndarray</a></p></li>
+<li><p><a class="reference internal" href="#save-filename-none" id="id29">Save(filename)-&gt;None</a></p></li>
+<li><p><a class="reference internal" href="#freezelayers-layers-none" id="id30">FreezeLayers(layers)-&gt;None</a></p></li>
+<li><p><a class="reference internal" href="#layers-list-str" id="id31">layers -&gt; list[str]:</a></p></li>
+<li><p><a class="reference internal" href="#getstaticparameters-list-staticparameters" id="id32">GetStaticParameters()-&gt;list[StaticParameters]</a></p></li>
+<li><p><a class="reference internal" href="#computedynamics-data-list-dynamics" id="id33">ComputeDynamics(data)-&gt;list[Dynamics]</a></p></li>
+</ul>
+</nav>
+<section id="parameters">
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">Parameters</a><a class="headerlink" href="#parameters" title="Link to this heading"></a></h3>
+<blockquote>
+<div><dl>
+<dt>encoder<span class="classifier">IEncoder</span></dt><dd><p>SAMACTが利用するエンコーダを指定します。
+本バージョンで利用可能なエンコーダは下記を参照してください。</p>
+<p><a class="reference internal" href="../EncodeLayer/index.html"><span class="doc">EncodeLayer</span></a></p>
+</dd>
+<dt>decoder<span class="classifier">IDecoder</span></dt><dd><p>SAMACTが利用するデコーダを指定します。
+本バージョンで利用可能なデコーダは下記を参照してください。</p>
+<p><a class="reference internal" href="../DecodeLayer/index.html"><span class="doc">DecodeLayer</span></a></p>
+</dd>
+<dt>layers<span class="classifier">list[INeuralLayer]</span></dt><dd><p>SAMACTのLayerを渡します。
+本バージョンで利用可能なLayerは下記を参照してください。</p>
+<p><a class="reference internal" href="../NeuralLayer/index.html"><span class="doc">NeuralLayer</span></a></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<hr class="docutils" />
+<section id="add-layer-none">
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">Add(layer) -&gt; None</a><a class="headerlink" href="#add-layer-none" title="Link to this heading"></a></h3>
+<p>SAMACTのLayerを最後段に追加します。</p>
+<section id="id4">
+<h4>Parameters<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
+<blockquote>
+<div><dl>
+<dt>layer<span class="classifier">INeuralLayer</span></dt><dd><p>SAMACTのLayerを渡します。
+本バージョンで利用可能なLayerは下記を参照してください。</p>
+<p><a class="reference internal" href="../NeuralLayer/index.html"><span class="doc">NeuralLayer</span></a></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="returns">
+<h4>Returns<a class="headerlink" href="#returns" title="Link to this heading"></a></h4>
+<blockquote>
+<div><p>None</p>
+</div></blockquote>
+</section>
+</section>
+<hr class="docutils" />
+<section id="compile-tc-none">
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">Compile(tC) -&gt; None</a><a class="headerlink" href="#compile-tc-none" title="Link to this heading"></a></h3>
+<p>オブジェクトが持っている設定値から、SAMACTモデルを生成します。</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>このメソッドの実行前は、ほとんどのメソッドが利用できません。</p>
+</div>
+<section id="id5">
+<h4>Parameters<a class="headerlink" href="#id5" title="Link to this heading"></a></h4>
+<blockquote>
+<div><dl>
+<dt>tC<span class="classifier">int</span></dt><dd><p>SAMACTの1データに対する使用ユニットタイム数を設定します。</p>
+<p>設定値の目安の参考として、 <a class="reference internal" href="../../WhatIsSamact/HyperParameter.html#unittime"><span class="std std-ref">データごとのユニットタイム数 tC</span></a> を参照してください。</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="id6">
+<h4>Returns<a class="headerlink" href="#id6" title="Link to this heading"></a></h4>
+<blockquote>
+<div><p>None</p>
+</div></blockquote>
+</section>
+</section>
+<hr class="docutils" />
+<section id="fit-dataset-labels-epochs-learningproperty-metrics-accuracy-fitresult">
+<h3><a class="toc-backref" href="#id25" role="doc-backlink">Fit(dataset, labels, epochs, learningProperty, metrics=’accuracy’) -&gt; FitResult</a><a class="headerlink" href="#fit-dataset-labels-epochs-learningproperty-metrics-accuracy-fitresult" title="Link to this heading"></a></h3>
+<p>datasetを説明変数、labelsを目的変数として、SAMACTを学習します。</p>
+<section id="id7">
+<h4>Parameters<a class="headerlink" href="#id7" title="Link to this heading"></a></h4>
+<blockquote>
+<div><dl>
+<dt>dataset<span class="classifier">np.ndarray</span></dt><dd><p>説明変数を指定します。</p>
+<p>下記の次元になっていることを想定しています。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">データ数</span><span class="p">,</span> <span class="n">説明変数の数</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>説明変数は、0から1の範囲に変換して渡してください。</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>0から1の範囲に正規化するのが最もスタンダードですが、0.1から0.9の範囲に正規化する、という選択肢も考えられます。</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>正規化には、scikit-learnの <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MinMaxScaler.html">MinMaxScaler</a> などを利用すると良いでしょう。</p>
+</div>
+</dd>
+<dt>labels<span class="classifier">np.ndarray</span></dt><dd><p>目的変数を指定します。</p>
+<p>下記の次元になっていることを想定しています。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">データ数</span><span class="p">,</span> <span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>分類問題の場合、目的変数はラベルの通し番号をint型として定義してください。</p></li>
+</ul>
+</dd>
+<dt>epochs<span class="classifier">int</span></dt><dd><p>学習epoch数を設定します。</p>
+</dd>
+<dt>learningProperty<span class="classifier"><a class="reference internal" href="../SAMACTProperty/LearningProperty.html"><span class="doc">LearningProperty</span></a></span></dt><dd><p>学習のための設定値を設定します。</p>
+</dd>
+<dt>metrics<span class="classifier">str, default=’accuracy’</span></dt><dd><p>学習の評価メトリクスを設定します。</p>
+<p>分類問題を利用する場合、’accuracy’を指定してください。(デフォルト)</p>
+<p>回帰予測やオートエンコーダを利用する場合、’mse’を指定してください。</p>
+<p>その他の指標については、学習データでEvaluate()し、EvaluationResult.predictsを利用してユーザが計算することを想定しています。</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="id8">
+<h4>Returns<a class="headerlink" href="#id8" title="Link to this heading"></a></h4>
+<blockquote>
+<div><p><a class="reference internal" href="../Results/FitResult.html"><span class="doc">FitResult</span></a></p>
+<p>学習結果のサマリを返します。</p>
+</div></blockquote>
+</section>
+</section>
+<hr class="docutils" />
+<section id="evaluate-dataset-label-metrics-accuracy-evaluationresult">
+<h3><a class="toc-backref" href="#id26" role="doc-backlink">Evaluate(dataset, label, metrics=’accuracy’) -&gt; EvaluationResult</a><a class="headerlink" href="#evaluate-dataset-label-metrics-accuracy-evaluationresult" title="Link to this heading"></a></h3>
+<p>datasetを説明変数、labelを目的変数として、SAMACTを評価します。</p>
+<section id="id9">
+<h4>Parameters<a class="headerlink" href="#id9" title="Link to this heading"></a></h4>
+<blockquote>
+<div><dl>
+<dt>dataset<span class="classifier">np.ndarray</span></dt><dd><p>説明変数を指定します。</p>
+<p>下記の次元になっていることを想定しています。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">データ数</span><span class="p">,</span> <span class="n">説明変数の数</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>説明変数は、0から1の範囲に変換して渡してください。</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>0から1の範囲に正規化するのが最もスタンダードですが、0.1から0.9の範囲に正規化する、という選択肢も考えられます。</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>正規化には、scikit-learnの <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MinMaxScaler.html">MinMaxScaler</a> などを利用すると良いでしょう。</p>
+</div>
+</dd>
+<dt>label<span class="classifier">np.ndarray</span></dt><dd><p>目的変数を指定します。</p>
+<p>下記の次元になっていることを想定しています。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">データ数</span><span class="p">,</span> <span class="n">目的変数の数</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>分類問題の場合、目的変数はラベルの通し番号をint型として定義してください。</p></li>
+<li><p>オートエンコーダの場合、Noneを指定してください。</p></li>
+</ul>
+</dd>
+<dt>metrics<span class="classifier">str, default=’accuracy’</span></dt><dd><p>分類問題を利用する場合、’accuracy’を指定してください。(デフォルト)</p>
+<p>回帰予測やオートエンコーダを利用する場合、’mse’を指定してください。</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="id10">
+<h4>Returns<a class="headerlink" href="#id10" title="Link to this heading"></a></h4>
+<blockquote>
+<div><p><a class="reference internal" href="../Results/EvaluationResult.html"><span class="doc">EvaluationResult</span></a></p>
+</div></blockquote>
+</section>
+</section>
+<hr class="docutils" />
+<section id="predict-data-int-float-np-ndarray">
+<h3><a class="toc-backref" href="#id27" role="doc-backlink">Predict(data) -&gt; int|float|np.ndarray</a><a class="headerlink" href="#predict-data-int-float-np-ndarray" title="Link to this heading"></a></h3>
+<p>1データに対して、SAMACTで推論します。</p>
+<section id="id11">
+<h4>Parameters<a class="headerlink" href="#id11" title="Link to this heading"></a></h4>
+<blockquote>
+<div><dl>
+<dt>data<span class="classifier">np.ndarray</span></dt><dd><p>下記の次元になっていることを想定しています。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">説明変数の数</span><span class="p">,</span> <span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="id12">
+<h4>Returns<a class="headerlink" href="#id12" title="Link to this heading"></a></h4>
+<blockquote>
+<div><ul class="simple">
+<li><p>分類問題の場合、ラベルの通し番号を返します。(int)</p></li>
+<li><p>オートエンコーダの場合、再構成誤差を返します。(float)</p></li>
+<li><p>回帰予測の場合、目的変数群を返します。(np.ndarray)</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<hr class="docutils" />
+<section id="pulsecountpredict-data-np-ndarray">
+<h3><a class="toc-backref" href="#id28" role="doc-backlink">PulseCountPredict(data) -&gt; np.ndarray</a><a class="headerlink" href="#pulsecountpredict-data-np-ndarray" title="Link to this heading"></a></h3>
+<p>1データに対して、SAMACTで推論します。</p>
+<p>ただし、返り値を各出力ニューロンのパルス数として受け取ります。</p>
+<section id="id13">
+<h4>Parameters<a class="headerlink" href="#id13" title="Link to this heading"></a></h4>
+<blockquote>
+<div><dl>
+<dt>data<span class="classifier">np.ndarray</span></dt><dd><p>下記の次元になっていることを想定しています。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">説明変数の数</span><span class="p">,</span> <span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+<dl>
+<dt>Returns</dt><dd><p>np.ndarray</p>
+<p>次元は下記になります。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">出力ニューロンのパルス数</span><span class="p">,</span> <span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>出力されるのはパルス数で、返り値をそのままSoftmaxとして解釈することはできないのでご注意ください。</p>
+</div>
+</dd>
+</dl>
+</section>
+</section>
+<hr class="docutils" />
+<section id="save-filename-none">
+<h3><a class="toc-backref" href="#id29" role="doc-backlink">Save(filename)-&gt;None</a><a class="headerlink" href="#save-filename-none" title="Link to this heading"></a></h3>
+<p>現時点のモデルの情報をh5形式のファイルに出力します。</p>
+<p>本フレームワークの <a class="reference internal" href="Pretrained.html"><span class="doc">Pretrained</span></a> のコンストラクタ引数にすることで、ファイルからモデルを読み込むことができます。</p>
+<section id="id14">
+<h4>Parameters<a class="headerlink" href="#id14" title="Link to this heading"></a></h4>
+<blockquote>
+<div><dl class="simple">
+<dt>filename<span class="classifier">str</span></dt><dd><p>保存するファイルの名称を指定します。(拡張子は.h5を推奨)</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="id15">
+<h4>Returns<a class="headerlink" href="#id15" title="Link to this heading"></a></h4>
+<blockquote>
+<div><p>None</p>
+</div></blockquote>
+</section>
+</section>
+<hr class="docutils" />
+<section id="freezelayers-layers-none">
+<h3><a class="toc-backref" href="#id30" role="doc-backlink">FreezeLayers(layers)-&gt;None</a><a class="headerlink" href="#freezelayers-layers-none" title="Link to this heading"></a></h3>
+<p>layersで名前指定したレイヤーの学習可能パラメータをフリーズします。</p>
+<p>転移学習などの文脈での利用を想定しています</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>本バージョンではフリーズの解除はできません。</p>
+</div>
+<section id="id16">
+<h4>Parameters<a class="headerlink" href="#id16" title="Link to this heading"></a></h4>
+<blockquote>
+<div><dl>
+<dt>layers<span class="classifier">list[str]</span></dt><dd><p>フリーズするレイヤーの名前のリストを渡します。</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>layerの名称は、次の命名規則になります。f’SAMLayer{i}’</p>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="id17">
+<h4>Returns<a class="headerlink" href="#id17" title="Link to this heading"></a></h4>
+<blockquote>
+<div><p>None</p>
+</div></blockquote>
+</section>
+</section>
+<hr class="docutils" />
+<section id="layers-list-str">
+<h3><a class="toc-backref" href="#id31" role="doc-backlink">layers -&gt; list[str]:</a><a class="headerlink" href="#layers-list-str" title="Link to this heading"></a></h3>
+<p>モデルが持つ学習可能レイヤーの名前の一覧をリストで取得できるプロパティです。</p>
+</section>
+<hr class="docutils" />
+<section id="getstaticparameters-list-staticparameters">
+<h3><a class="toc-backref" href="#id32" role="doc-backlink">GetStaticParameters()-&gt;list[StaticParameters]</a><a class="headerlink" href="#getstaticparameters-list-staticparameters" title="Link to this heading"></a></h3>
+<p>モデルの学習可能パラメータを取得します。</p>
+<section id="id18">
+<h4>Parameters<a class="headerlink" href="#id18" title="Link to this heading"></a></h4>
+<blockquote>
+<div><p>None</p>
+</div></blockquote>
+</section>
+<section id="id19">
+<h4>Returns<a class="headerlink" href="#id19" title="Link to this heading"></a></h4>
+<blockquote>
+<div><p>list[StaticParameters]</p>
+<p>StaticParametersの仕様については、<a class="reference internal" href="../Results/StaticParameters.html"><span class="doc">StaticParameters</span></a> を参照してください。</p>
+</div></blockquote>
+</section>
+</section>
+<hr class="docutils" />
+<section id="computedynamics-data-list-dynamics">
+<h3><a class="toc-backref" href="#id33" role="doc-backlink">ComputeDynamics(data)-&gt;list[Dynamics]</a><a class="headerlink" href="#computedynamics-data-list-dynamics" title="Link to this heading"></a></h3>
+<div class="line-block">
+<div class="line">パラメータで渡したデータ(1レコード)に対しての</div>
+<div class="line">モデルの動的パラメータ(内部電位や発火時刻)を取得します。</div>
+</div>
+<section id="id20">
+<h4>Parameters<a class="headerlink" href="#id20" title="Link to this heading"></a></h4>
+<blockquote>
+<div><dl>
+<dt>data<span class="classifier">np.ndarray</span></dt><dd><p>下記の次元になっていることを想定しています。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">説明変数の数</span><span class="p">,</span> <span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="id21">
+<h4>Returns<a class="headerlink" href="#id21" title="Link to this heading"></a></h4>
+<blockquote>
+<div><p>list[Dynamics]</p>
+<p>Dynamicsの仕様については、<a class="reference internal" href="../Results/Dynamics.html"><span class="doc">Dynamics</span></a> を参照してください。</p>
+</div></blockquote>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Models" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Pretrained.html" class="btn btn-neutral float-right" title="Pretrained" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Maviss Design Co. Ltd.
+      <span class="lastupdated">Last updated on 2026-04-17.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

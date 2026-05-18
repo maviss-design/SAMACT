@@ -1,0 +1,48 @@
+NeuronFocusDecodeLayer
+########################
+
+.. only:: internal
+
+    .. hint::
+        本クラスはApr2026より複数目的変数に対応。
+
+SAMACTのデコーダを定義するためのクラスです。
+
+| 主に回帰予測をタスクとして与える場合に、このデコーダを利用します。
+| 目的変数(応答変数)は任意数ですが、
+| 出力層のニューロンが均等な数で目的変数を表現していると解釈してデコードします。
+| 出力層のユニット数36に対して、目的変数が3つの場合、1目的変数あたり12個のニューロンを使って表現する形になります。
+| つまり、このデコーダを利用するとき、出力層数を増やすことで、出力される数値の精度が向上します。
+
+このオブジェクトは、下記のクラスのパラメータとして利用します。
+
+* :doc:`../Models/Sequential`
+
+クラス定義
+*******************
+
+.. code:: python
+
+    class NeuronFocusDecodeLayer(nObjectives):
+
+
+import記述例
+*****************
+
+.. code:: python
+
+    from samact import NeuronFocusDecodeLayer
+
+クラス要素
+**************
+
+.. contents:: クラス要素一覧
+   :depth: 1
+   :local:
+   :backlinks: entry
+
+Parameters
+==========================
+
+    nObjectives: int
+        目的変数の数を指定します。

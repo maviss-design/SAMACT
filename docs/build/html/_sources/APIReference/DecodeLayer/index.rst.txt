@@ -1,0 +1,11 @@
+#################
+DecodeLayer
+#################
+
+.. toctree::
+   :maxdepth: 1
+   :caption: API Reference DecodeLayer:
+
+   MajorityDecodeLayer
+   NeuronFocusDecodeLayer
+   AutoEncoderDecodeLayer

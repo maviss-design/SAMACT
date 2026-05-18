@@ -1,0 +1,31 @@
+MajorityDecodeLayer
+########################
+
+SAMACTのデコーダを定義するためのクラスです。
+
+主に分類問題をタスクとして与える場合に、このクラスを利用します。
+
+このオブジェクトは、下記のクラスのパラメータとして利用します。
+
+* :doc:`../Models/Sequential`
+
+クラス定義
+*******************
+
+.. code:: python
+
+    class MajorityDecodeLayer():
+
+このクラスにユーザが設定できるパラメータはありません。
+
+import記述例
+*****************
+
+.. code:: python
+
+    from samact import MajorityDecodeLayer
+
+クラス要素
+**************
+
+ユーザとのインタフェースになる要素はありません。

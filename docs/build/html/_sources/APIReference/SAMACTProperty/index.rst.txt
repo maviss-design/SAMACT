@@ -1,0 +1,11 @@
+#################
+SAMACTProperty
+#################
+
+.. toctree::
+   :maxdepth: 1
+   :caption: API Reference SAMACTProperty:
+
+   LayerProperty
+   LearningProperty
+   RandomProperty
