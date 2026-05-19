@@ -87,9 +87,6 @@ AGPLv3です。
 
 # PySAMACT: Python API for PoC of the SAMACT Hardware Core IP
 
-https://img.shields.io/pypi/v/samact.svg](https://pypi.org/project/samact/)  
-https://img.shields.io/pypi/l/samact.svg](LICENSE (GitHub path))
-
 SAMACT is an AI IP for endpoint devices with on-chip learning capability, developed and owned by Maviss Design Inc.  
 This library is a **Python implementation that reproduces the numerical specifications and computational behavior equivalent to the SAMACT hardware implementation**, and is primarily intended for **Proof of Concept (PoC)** use.
 
