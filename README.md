@@ -58,13 +58,14 @@ pip install samact
 
 ## API仕様書 (API Document)
 API仕様書は下記をご覧ください。  
-XXXXXX(github pagesへのリンク)  
-※準備中
+https://maviss-design.github.io/SAMACT/
+
 
 ## 制限事項 (Limitations)
 
 *   実行速度は最適化されていません
-*   ソースコードはPyPIで公開されており、githubでは公開されていません。
+*   ソースコードはPyPIで公開されており、githubでは公開されていません。  
+https://pypi.org/project/samact/
 
 ***
 
@@ -143,15 +144,14 @@ pip install samact
 ## API Documentation
 
 Please refer to the following for the API documentation:  
-XXXXXX (link to GitHub Pages)  
-Now deploying
-
+https://maviss-design.github.io/SAMACT/
 ***
 
 ## Limitations
 
 *   Execution speed is not optimized
-*   Source code is distributed via PyPI and is not publicly available on GitHub
+*   Source code is distributed via PyPI and is not publicly available on GitHub  
+https://pypi.org/project/samact/
 
 ***
 
