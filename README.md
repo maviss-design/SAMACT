@@ -1,7 +1,6 @@
 # PySAMACT: Python API for PoC of the SAMACT Hardware Core IP
 
-[![PyPI Version][(https://img.shields.io/pypi/v/samact.svg)](https://pypi.org/project/samact/)  
-[![License](https://img.shields.io/pypi/l/samact.svg)](https://github.com/maviss-design/SAMACT/blob/main/LICENSE)
+[![PyPI Version](https://img.shields.io/pypi/v/samact.svg)](https://pypi.org/project/samact/)  
 
 SAMACTは、メイビスデザイン株式会社が開発・保有する、オンチップ学習に対応したエンドポイント向けAI IPです。  
 本ライブラリは、**SAMACTのハードウェア実装と同等の数値仕様および演算仕様を再現したPythonライブラリ**であり、主に**PoC（概念実証）用途**での利用を想定しています。  
